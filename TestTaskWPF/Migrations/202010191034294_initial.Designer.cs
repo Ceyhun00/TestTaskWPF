@@ -13,7 +13,7 @@ namespace TestTaskWPF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202010181737215_initial"; }
+            get { return "202010191034294_initial"; }
         }
         
         string IMigrationMetadata.Source

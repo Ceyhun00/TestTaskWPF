@@ -8,12 +8,16 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="383*"/>
+            <ColumnDefinition Width="410*"/>
         </Grid.ColumnDefinitions>
         <Button Content="Upload" HorizontalAlignment="Left" Margin="305,75,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="19"/>
         <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="400" Width="290"/>
-        <Button x:Name="Download" Content="Download" HorizontalAlignment="Left" Margin="305,126,0,0" VerticalAlignment="Top" Width="75" Click="Download_Click"/>
+        <Button x:Name="Download" Content="Download" HorizontalAlignment="Left" Margin="305,126,0,0" VerticalAlignment="Top" Width="75" Click="Download_Click" Height="19"/>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="21.8,-95,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Add" x:Name="AddButton" Grid.Column="1" HorizontalAlignment="Left" Margin="21.8,34,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" x:Name="DeleteButton" Grid.Column="1" HorizontalAlignment="Left" Margin="156.8,34,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Add to DB" x:Name="AddDbButton" HorizontalAlignment="Left" Margin="305,172,0,0" VerticalAlignment="Top" Width="75" Click="AddDbButton_Click_1"/>
 
     </Grid>
 </Window>

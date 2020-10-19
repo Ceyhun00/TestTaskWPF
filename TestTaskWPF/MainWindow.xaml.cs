@@ -27,6 +27,7 @@ namespace TestTaskWPF
     public partial class MainWindow : Window
     {
         private TestWpfContext Context;
+        public static string fileName;
         public MainWindow()
         {
             Context = new TestWpfContext();
@@ -38,9 +39,29 @@ namespace TestTaskWPF
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             bool? result = dialog.ShowDialog();
             //if (result == true)
-                // Open document
-            string filename = dialog.FileName;
-            string fileText = File.ReadAllText(filename);
+            // Open document
+            fileName = dialog.FileName;
+            string fileText = File.ReadAllText(fileName);
+
+            Context.SaveChanges();
+            TextBox1.Text = fileText;
+        }
+
+        public JObject ParseJson(string fileText)
+        {
+            var jObject = JObject.Parse(fileText);
+            return jObject;
+        }
+
+        private void Download_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void AddDbButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            string fileText = File.ReadAllText(fileName);
             var parsed = ParseJson(fileText);
             var dItems = parsed["D"]?["items"];
             if (parsed["Q"]?.ToString() == "BOOKS")
@@ -69,31 +90,22 @@ namespace TestTaskWPF
                     foreach (var item in dItems)
                     {
                         var obj = JsonConvert.DeserializeObject<Author>(item.ToString());
-                        foreach (var t in obj.Books)
+                        if (obj.Books != null)
                         {
-                            var bookId = t.id;
-                            var bookAuthor = Context.Books.First(x => x.id == bookId);
-                            books.Add(bookAuthor);
+                            foreach (var t in obj.Books)
+                            {
+                                var bookId = t.id;
+                                var bookAuthor = Context.Books.First(x => x.id == bookId);
+                                books.Add(bookAuthor);
+                            }
+                            obj.Books = books;
                         }
-
-                        obj.Books = books;
                         Context.Authors.Add(obj);
+                        MessageBox.Show("Успешно");
                     }
                 }
             }
             Context.SaveChanges();
-            TextBox1.Text = fileText;
-        }
-
-        public JObject ParseJson(string fileText)
-        {
-            var jObject = JObject.Parse(fileText);
-            return jObject;
-        }
-
-        private void Download_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -38,16 +38,13 @@ namespace TestTaskWPF
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             bool? result = dialog.ShowDialog();
-            if (result == true)
-            {
+            //if (result == true)
+            // Open document
+            fileName = dialog.FileName;
+            string fileText = File.ReadAllText(fileName);
 
-                fileName = dialog.FileName;
-                string fileText = File.ReadAllText(fileName);
-                TextBox1.Text = fileText;
-
-            }
-
-
+            Context.SaveChanges();
+            TextBox1.Text = fileText;
         }
 
         public JObject ParseJson(string fileText)
@@ -61,6 +58,7 @@ namespace TestTaskWPF
 
         }
 
+
         private void AddDbButton_Click_1(object sender, RoutedEventArgs e)
         {
             string fileText = File.ReadAllText(fileName);
@@ -69,48 +67,42 @@ namespace TestTaskWPF
             if (parsed["Q"]?.ToString() == "BOOKS")
             {
                 if (dItems != null)
-                {
                     foreach (var item in dItems)
                     {
-                        var authors = new List<Author>();
                         var obj = JsonConvert.DeserializeObject<Book>(item.ToString());
-                        if (obj.authors != null)
+                        var authors = new List<Author>();
+                        foreach (var t in obj.authors)
                         {
-                            foreach (var t in obj.authors)
-                            {
-                                var authorId = t.id;
-                                var author = Context.Authors.First(x => x.id == authorId);
-                                authors.Add(author);
-                            }
+                            var authorId = t.id;
+                            var author = Context.Authors.First(x => x.id == authorId);
+                            authors.Add(author);
                         }
+
                         obj.authors = authors;
                         Context.Books.Add(obj);
                     }
-                }
             }
             else if (parsed["Q"]?.ToString() == "AUTHORS")
             {
                 if (dItems != null)
                 {
+                    var books = new List<Book>();
                     foreach (var item in dItems)
                     {
-                        var books = new List<Book>();
-
                         var obj = JsonConvert.DeserializeObject<Author>(item.ToString());
                         if (obj.Books != null)
                         {
                             foreach (var t in obj.Books)
                             {
                                 var bookId = t.id;
-                                var book = Context.Books.First(x => x.id == bookId);
-                                books.Add(book);
+                                var bookAuthor = Context.Books.First(x => x.id == bookId);
+                                books.Add(bookAuthor);
                             }
-
+                            obj.Books = books;
                         }
-                        obj.Books = books;
                         Context.Authors.Add(obj);
+                        MessageBox.Show("Успешно");
                     }
-
                 }
             }
             Context.SaveChanges();

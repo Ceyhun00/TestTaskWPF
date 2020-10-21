@@ -69,19 +69,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migrations\202010210551025_Initial.cs" />
-    <Compile Include="Migrations\202010210551025_Initial.designer.cs">
-      <DependentUpon>202010210551025_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202010191034294_initial.cs" />
+    <Compile Include="Migrations\202010191034294_initial.designer.cs">
+      <DependentUpon>202010191034294_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\D.cs" />
     <Compile Include="Models\Parameters.cs" />
     <Compile Include="TestWPFContext.cs" />
-    <Compile Include="WIndows\AddWindow.xaml.cs">
-      <DependentUpon>AddWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,10 +92,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WIndows\AddWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -113,8 +107,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202010210551025_Initial.resx">
-      <DependentUpon>202010210551025_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010191034294_initial.resx">
+      <DependentUpon>202010191034294_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TestTaskWPF.Models
 {
     public class D
     {
-        public  int count { get; set; }
-        public  List<Book> BookItems { get; set; }
-        public List<Author> AuthorItems { get; set; }
+        //[Key]
+        //public int DId { get; set; }
+        //public int count { get; set; }
+        //public List<> items { get; set; }
     }
 }

@@ -12,14 +12,9 @@ namespace TestTaskWPF
     {
         public TestWpfContext() : base("DefaultConnection")
         {
-                
+
         }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
-        //public DbSet<Parameters<Author>> AuthorParameters { get; set; }
-        //public DbSet<Parameters<Book>> BooParameters { get; set; }
-
     }
-
-
 }
